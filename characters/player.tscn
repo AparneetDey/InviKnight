@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://clv5tleymwejk"]
+
+[ext_resource type="Script" uid="uid://cfj38p8nqkr14" path="res://characters/player.gd" id="1_3eadt"]
+[ext_resource type="Texture2D" uid="uid://cjr0itabvdy57" path="res://assets/sprites/knight.png" id="1_dnjla"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dnjla"]
+radius = 5.0
+height = 16.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_3eadt")
+acceleration = 600
+dashSpeed = 500
+friction = 450
+jumpIntensity = 250
+maxSpeed = 300
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_dnjla")
+centered = false
+offset = Vector2(-16, -28)
+hframes = 8
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CapsuleShape2D_dnjla")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
