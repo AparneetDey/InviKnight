@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cc2qir7ytxfeo"]
+[gd_scene load_steps=6 format=3 uid="uid://cc2qir7ytxfeo"]
 
+[ext_resource type="Script" uid="uid://b776fahg2w5kf" path="res://stages/checkpoint.gd" id="1_2ux4w"]
 [ext_resource type="Texture2D" uid="uid://nw7wksxlog8v" path="res://assets/sprites/checkpoint-flag.png" id="1_shk6w"]
 
 [sub_resource type="Animation" id="Animation_shk6w"]
@@ -42,6 +43,10 @@ _data = {
 }
 
 [node name="Checkpoint" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_2ux4w")
 
 [node name="CheckpointFlag" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
