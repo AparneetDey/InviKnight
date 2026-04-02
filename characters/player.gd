@@ -13,7 +13,8 @@ const GRAVITY = 500
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var characterSprite : Sprite2D = $CharacterSprite
 @onready var dashTimer : Timer = $DashTimer
-@onready var damageEmitter : Area2D = $DamageEmitter
+@onready var damageEmitter : Area2D = $EmitterPivot/DamageEmitter
+@onready var emitterPivot : Node2D = $EmitterPivot
 
 
 enum State {IDLE, WALK, JUMP, DASH}
@@ -36,7 +37,8 @@ func _ready() -> void:
 	damageEmitter.body_entered.connect(onBreakWall)
 
 func _physics_process(delta: float) -> void:
-	#damageEmitter.monitoring = state == State.DASH
+	damageEmitter.monitoring = state == State.DASH
+	damageEmitter.monitorable = state == State.DASH
 	handleAnimation()
 	flipSprites()
 	applyGravity(delta)
@@ -51,8 +53,10 @@ func handleAnimation() -> void:
 func flipSprites() -> void:
 	if(velocity.x > 0):
 		characterSprite.flip_h = false
+		emitterPivot.scale.x = 1
 	elif(velocity.x < 0):
 		characterSprite.flip_h = true
+		emitterPivot.scale.x = -1
 
 func applyGravity(delta: float) -> void:
 	if(not is_on_floor()):
@@ -99,5 +103,6 @@ func onDashTimeout() -> void:
 		state = State.IDLE
 		timeSinceDashed = Time.get_ticks_msec()
 
-func onBreakWall() -> void:
-	print("hit")
+func onBreakWall(body: Node2D) -> void:
+	if(body is TileMapLayer):
+		SignalManager.hitBreakbleWall.emit(damageEmitter.global_position)

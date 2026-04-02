@@ -118,7 +118,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tory2"]
-size = Vector2(7, 11)
+size = Vector2(2.5, 13)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -152,13 +152,16 @@ autoplay = "idle"
 wait_time = 0.25
 one_shot = true
 
-[node name="DamageEmitter" parent="." instance=ExtResource("3_tory2")]
-position = Vector2(5, 0)
+[node name="EmitterPivot" type="Node2D" parent="."]
+position = Vector2(0, -6)
+
+[node name="DamageEmitter" parent="EmitterPivot" instance=ExtResource("3_tory2")]
+position = Vector2(10, 0)
 collision_mask = 4
 monitoring = true
+monitorable = true
 
-[node name="CollisionShape2D" parent="DamageEmitter" index="0"]
-position = Vector2(5, -6)
+[node name="CollisionShape2D" parent="EmitterPivot/DamageEmitter" index="0"]
 shape = SubResource("RectangleShape2D_tory2")
 
-[editable path="DamageEmitter"]
+[editable path="EmitterPivot/DamageEmitter"]

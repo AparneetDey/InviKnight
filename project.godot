@@ -15,6 +15,14 @@ run/main_scene="uid://ce4is7obhwrrq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SignalManager="*res://managers/signal_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
+
 [display]
 
 window/size/viewport_width=640
