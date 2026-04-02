@@ -1,11 +1,45 @@
-[gd_scene load_steps=10 format=3 uid="uid://clv5tleymwejk"]
+[gd_scene load_steps=12 format=3 uid="uid://clv5tleymwejk"]
 
 [ext_resource type="Script" uid="uid://cfj38p8nqkr14" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Texture2D" uid="uid://cjr0itabvdy57" path="res://assets/sprites/knight.png" id="1_dnjla"]
+[ext_resource type="PackedScene" uid="uid://bcwtexjdc5l3n" path="res://colliders/damage_emitter.tscn" id="3_tory2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dnjla"]
 radius = 5.0
-height = 16.0
+height = 12.0
+
+[sub_resource type="Animation" id="Animation_tory2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h1q25"]
+resource_name = "dash"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [43]
+}
 
 [sub_resource type="Animation" id="Animation_3eadt"]
 resource_name = "idle"
@@ -23,39 +57,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_tory2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_x0jl3"]
-resource_name = "walk"
-length = 0.8
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CharacterSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [16, 17, 18, 19, 20, 21, 22, 23]
 }
 
 [sub_resource type="Animation" id="Animation_evndh"]
@@ -89,9 +90,9 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_h1q25"]
-resource_name = "dash"
-length = 0.1
+[sub_resource type="Animation" id="Animation_x0jl3"]
+resource_name = "walk"
+length = 0.8
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -101,10 +102,10 @@ tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [43]
+"values": [16, 17, 18, 19, 20, 21, 22, 23]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j31ep"]
@@ -116,10 +117,15 @@ _data = {
 &"walk": SubResource("Animation_x0jl3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tory2"]
+size = Vector2(7, 11)
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_3eadt")
 acceleration = 600
-dashSpeed = 500
+dashSpeed = 350
 durationJustDashed = 1000.0
 friction = 900
 jumpIntensity = 250
@@ -133,7 +139,7 @@ hframes = 8
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -6)
 shape = SubResource("CapsuleShape2D_dnjla")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -145,3 +151,14 @@ autoplay = "idle"
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.25
 one_shot = true
+
+[node name="DamageEmitter" parent="." instance=ExtResource("3_tory2")]
+position = Vector2(5, 0)
+collision_mask = 4
+monitoring = true
+
+[node name="CollisionShape2D" parent="DamageEmitter" index="0"]
+position = Vector2(5, -6)
+shape = SubResource("RectangleShape2D_tory2")
+
+[editable path="DamageEmitter"]

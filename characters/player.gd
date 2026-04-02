@@ -13,6 +13,7 @@ const GRAVITY = 500
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var characterSprite : Sprite2D = $CharacterSprite
 @onready var dashTimer : Timer = $DashTimer
+@onready var damageEmitter : Area2D = $DamageEmitter
 
 
 enum State {IDLE, WALK, JUMP, DASH}
@@ -32,8 +33,10 @@ var timeSinceDashed : float = Time.get_ticks_msec()
 func _ready() -> void:
 	speed = maxSpeed
 	dashTimer.timeout.connect(onDashTimeout.bind())
+	damageEmitter.body_entered.connect(onBreakWall)
 
 func _physics_process(delta: float) -> void:
+	#damageEmitter.monitoring = state == State.DASH
 	handleAnimation()
 	flipSprites()
 	applyGravity(delta)
@@ -95,3 +98,6 @@ func onDashTimeout() -> void:
 	if(state == State.DASH):
 		state = State.IDLE
 		timeSinceDashed = Time.get_ticks_msec()
+
+func onBreakWall() -> void:
+	print("hit")
