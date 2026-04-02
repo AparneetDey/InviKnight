@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqmiwhiv4n064"]
+
+[ext_resource type="Script" uid="uid://cbg6ybrtv10ul" path="res://containers/effects_container.gd" id="1_gr301"]
+
+[node name="EffectsContainer" type="Node2D"]
+z_index = 1
+script = ExtResource("1_gr301")
