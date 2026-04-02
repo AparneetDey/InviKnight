@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwmyp85pbu5pb"]
+
+[ext_resource type="Script" uid="uid://crb30j20057od" path="res://collectible/invincible_bottle.gd" id="1_y7iq2"]
+[ext_resource type="Texture2D" uid="uid://dpm6i4jx50w44" path="res://assets/sprites/world_tileset.png" id="2_c3rpo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r4mkv"]
+radius = 3.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_icuug"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sha7x"]
+resource_name = "float"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tvptk"]
+_data = {
+&"RESET": SubResource("Animation_icuug"),
+&"float": SubResource("Animation_sha7x")
+}
+
+[node name="InvincibleBottle" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_y7iq2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_c3rpo")
+centered = false
+offset = Vector2(-8, -9)
+hframes = 16
+vframes = 16
+frame = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_r4mkv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tvptk")
+}
+autoplay = "float"
