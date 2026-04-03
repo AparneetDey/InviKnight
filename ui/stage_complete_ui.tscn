@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://lnvdsicll0v0"]
+[gd_scene load_steps=2 format=3 uid="uid://lnvdsicll0v0"]
+
+[ext_resource type="Script" uid="uid://consss30w8dcx" path="res://ui/stage_complete_ui.gd" id="1_tup1t"]
 
 [node name="StageCompleteUI" type="Control"]
 layout_mode = 3
@@ -7,17 +9,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_tup1t")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Backdrop" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 color = Color(0, 0, 0, 0.30588236)
 
-[node name="Label" type="Label" parent="."]
+[node name="StageCompleteLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -29,3 +34,20 @@ offset_bottom = 96.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
 text = "Stage Completed"
+
+[node name="RetryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 190.0
+offset_right = 210.0
+offset_bottom = 221.0
+action_mode = 0
+text = "Retry"
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 190.0
+offset_right = 465.0
+offset_bottom = 221.0
+text = "Next"

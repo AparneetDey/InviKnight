@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce4is7obhwrrq"]
+[gd_scene load_steps=5 format=3 uid="uid://ce4is7obhwrrq"]
 
 [ext_resource type="PackedScene" uid="uid://b4egbcs143363" path="res://ui/ui.tscn" id="1_aqk2v"]
 [ext_resource type="Script" uid="uid://cjs06ribecyl4" path="res://world.gd" id="1_dwbse"]
-[ext_resource type="PackedScene" uid="uid://v4x21kwuqlbj" path="res://stages/stage.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://clv5tleymwejk" path="res://characters/player.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://dqmiwhiv4n064" path="res://containers/effects_container.tscn" id="3_036b0"]
-[ext_resource type="PackedScene" uid="uid://dwmyp85pbu5pb" path="res://collectible/invincible_bottle.tscn" id="3_tlwt5"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_dwbse")
@@ -13,12 +11,7 @@ player = NodePath("Player")
 
 [node name="UI" parent="." instance=ExtResource("1_aqk2v")]
 
-[node name="Stage" parent="." instance=ExtResource("1_f3sb7")]
-
 [node name="EffectsContainer" parent="." instance=ExtResource("3_036b0")]
 
 [node name="Player" parent="." instance=ExtResource("2_fj7yv")]
 position = Vector2(67, 289)
-
-[node name="InvincibleBottle" parent="." instance=ExtResource("3_tlwt5")]
-position = Vector2(146, 301)

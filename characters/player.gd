@@ -124,8 +124,13 @@ func onBreakWall(body: Node2D) -> void:
 		if(isInvincible):
 			SignalManager.hitBreakbleWall.emit(damageEmitter.global_position)
 
-func onPickedInvincibility() -> void:
-	isInvincible = true
+func onPickedInvincibility(invincibilityTime: float) -> void:
+	if(isInvincible):
+		var newTime := invincibleTimer.time_left + invincibilityTime
+		invincibleTimer.wait_time = newTime
+	else:
+		isInvincible = true
+		invincibleTimer.wait_time = invincibilityTime
 	state = State.POWER_UP
 	velocity = Vector2.ZERO
 
