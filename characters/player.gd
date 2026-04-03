@@ -18,7 +18,7 @@ const GRAVITY = 500
 @onready var emitterPivot : Node2D = $EmitterPivot
 
 
-enum State {IDLE, WALK, JUMP, DASH, POWER_UP, POWER_DOWN}
+enum State {IDLE, WALK, JUMP, DASH, POWER_UP, POWER_DOWN, FROZEN}
 const animMap : Dictionary = {
 	State.IDLE: "idle",
 	State.WALK: "walk",
@@ -26,6 +26,7 @@ const animMap : Dictionary = {
 	State.DASH: "dash",
 	State.POWER_UP: "powerUp",
 	State.POWER_DOWN: "powerDown",
+	State.FROZEN: "idle"
 }
 
 var dir : float = 0.0
@@ -37,6 +38,7 @@ var timeSinceDashed : float = Time.get_ticks_msec()
 
 func _init() -> void:
 	SignalManager.pickedInvincibility.connect(onPickedInvincibility.bind())
+	SignalManager.stageCompleted.connect(onStageComplete.bind())
 
 func _ready() -> void:
 	speed = maxSpeed
@@ -137,4 +139,8 @@ func onPickedInvincibility(invincibilityTime: float) -> void:
 func onInvincibilityTimeOut() -> void:
 	isInvincible = false
 	state = State.POWER_DOWN
+	velocity = Vector2.ZERO
+
+func onStageComplete() -> void:
+	state = State.FROZEN
 	velocity = Vector2.ZERO
