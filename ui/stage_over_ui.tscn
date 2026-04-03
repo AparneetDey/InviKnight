@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://g1ddueyw7twf"]
+
+[ext_resource type="PackedScene" uid="uid://lnvdsicll0v0" path="res://ui/stage_complete_ui.tscn" id="1_v0wj6"]
+
+[node name="StageOverUI" instance=ExtResource("1_v0wj6")]
+
+[node name="NextButton" parent="." index="3"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 8.0
+offset_bottom = 8.0
+disabled = true
+text = ""
+
+[node name="HomeButton" parent="." index="4"]
+disabled = true

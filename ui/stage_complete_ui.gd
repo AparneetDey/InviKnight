@@ -1,4 +1,4 @@
-class_name StageCompleteUI
+class_name StageStatusUI
 extends Control
 
 @onready var retryButton : Button = $RetryButton

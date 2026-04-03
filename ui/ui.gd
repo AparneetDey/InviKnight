@@ -2,11 +2,14 @@ class_name UI
 extends CanvasLayer
 
 const STAGE_COMPLETE_PREFAB := preload("res://ui/stage_complete_ui.tscn")
+const STAGE_OVER_PREFAB := preload("res://ui/stage_over_ui.tscn")
 
-var stageCompleteScene : Control = null
+var stageCompleteScene : StageStatusUI = null
+var stageOverScene : StageStatusUI = null
 
 func _init() -> void:
 	SignalManager.stageCompleted.connect(onStageComplete.bind())
+	SignalManager.stageOver.connect(onStageOver.bind())
 	SignalManager.stageRetry.connect(onStageStart)
 	SignalManager.stageNext.connect(onStageStart)
 
@@ -15,6 +18,13 @@ func onStageComplete() -> void:
 		stageCompleteScene = STAGE_COMPLETE_PREFAB.instantiate()
 		add_child(stageCompleteScene)
 
+func onStageOver() -> void:
+	if(stageOverScene == null):
+		stageOverScene = STAGE_OVER_PREFAB.instantiate()
+		add_child(stageOverScene)
+
 func onStageStart() -> void:
 	if(stageCompleteScene):
 		stageCompleteScene.queue_free()
+	if(stageOverScene):
+		stageOverScene.queue_free()

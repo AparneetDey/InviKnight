@@ -51,3 +51,9 @@ offset_top = 190.0
 offset_right = 465.0
 offset_bottom = 221.0
 text = "Next"
+
+[node name="HomeButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+disabled = true

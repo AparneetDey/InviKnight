@@ -13,12 +13,13 @@ const GRAVITY = 500
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var characterSprite : Sprite2D = $CharacterSprite
 @onready var dashTimer : Timer = $DashTimer
-@onready var damageEmitter : Area2D = $EmitterPivot/DamageEmitter
-@onready var invincibleTimer : Timer = $InvincibleTimer
 @onready var emitterPivot : Node2D = $EmitterPivot
+@onready var enemyDamageEmitter : Area2D = $EnemyDamageEmitter
+@onready var invincibleTimer : Timer = $InvincibleTimer
+@onready var wallDamageEmitter : Area2D = $EmitterPivot/DamageEmitter
 
 
-enum State {IDLE, WALK, JUMP, DASH, POWER_UP, POWER_DOWN, FROZEN}
+enum State {IDLE, WALK, JUMP, DASH, POWER_UP, POWER_DOWN, FROZEN, FALL, DEATH}
 const animMap : Dictionary = {
 	State.IDLE: "idle",
 	State.WALK: "walk",
@@ -26,7 +27,9 @@ const animMap : Dictionary = {
 	State.DASH: "dash",
 	State.POWER_UP: "powerUp",
 	State.POWER_DOWN: "powerDown",
-	State.FROZEN: "idle"
+	State.FROZEN: "idle",
+	State.FALL: "fall",
+	State.DEATH: "death",
 }
 
 var dir : float = 0.0
@@ -43,12 +46,12 @@ func _init() -> void:
 func _ready() -> void:
 	speed = maxSpeed
 	dashTimer.timeout.connect(onDashTimeout.bind())
-	damageEmitter.body_entered.connect(onBreakWall)
+	wallDamageEmitter.body_entered.connect(onBreakWall.bind())
+	enemyDamageEmitter.area_entered.connect(onDamageEmit.bind())
 	invincibleTimer.timeout.connect(onInvincibilityTimeOut.bind())
 
 func _physics_process(delta: float) -> void:
-	damageEmitter.monitoring = state == State.DASH
-	damageEmitter.monitorable = state == State.DASH
+	wallDamageEmitter.monitoring = state == State.DASH
 	handleAnimation()
 	flipSprites()
 	applyGravity(delta)
@@ -116,6 +119,11 @@ func onActionComplete() -> void:
 	if(isInvincible):
 		invincibleTimer.start()
 
+func onDeathComplete() -> void:
+	if(state==State.FALL):
+		state = State.DEATH
+		SignalManager.stageOver.emit()
+
 func onDashTimeout() -> void:
 	if(state == State.DASH):
 		state = State.IDLE
@@ -124,7 +132,14 @@ func onDashTimeout() -> void:
 func onBreakWall(body: Node2D) -> void:
 	if(body is TileMapLayer):
 		if(isInvincible):
-			SignalManager.hitBreakbleWall.emit(damageEmitter.global_position)
+			SignalManager.hitBreakbleWall.emit(wallDamageEmitter.global_position)
+
+func onDamageEmit(receiver: DamageReceiver) -> void:
+	if(isInvincible):
+		receiver.damageReceived.emit()
+	else:
+		state = State.FALL
+		velocity = Vector2.ZERO
 
 func onPickedInvincibility(invincibilityTime: float) -> void:
 	if(isInvincible):

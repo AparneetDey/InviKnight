@@ -2,14 +2,15 @@ class_name World
 extends Node2D
 
 const STAGE_MAP := [
-	preload("res://stages/stage.tscn"),
+	preload("res://stages/level_1.tscn"),
 	preload("res://stages/level_2.tscn"),
+	preload("res://stages/level_3.tscn"),
 ]
 
 @export var player : Player
 
 var currentStageScene : Stage = null
-var stageIndex : int = 0
+var stageIndex : int = 2
 
 func _ready() -> void:
 	handleStageLoad()

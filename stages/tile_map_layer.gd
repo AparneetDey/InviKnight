@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const radius := 3
+const radius := 2
 
 func _ready() -> void:
 	SignalManager.hitBreakbleWall.connect(onBreakWall.bind())

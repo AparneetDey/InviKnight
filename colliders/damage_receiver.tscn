@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://x2dx6ay63kph"]
 
-[ext_resource type="Script" uid="uid://br41nrj0jms2r" path="res://colliders/collision_shape_2d.gd" id="1_rhdop"]
+[ext_resource type="Script" uid="uid://ci4rnspj2cw85" path="res://colliders/damage_receiver.gd" id="1_rhdop"]
 
 [node name="DamageReceiver" type="Area2D"]
+monitoring = false
+script = ExtResource("1_rhdop")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 debug_color = Color(2.5990605e-06, 0.6428128, 0.31664625, 0.41960785)
-script = ExtResource("1_rhdop")
