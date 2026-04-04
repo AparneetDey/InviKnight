@@ -15,9 +15,15 @@ run/main_scene="uid://ce4is7obhwrrq"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 SignalManager="*res://managers/signal_manager.gd"
+MusicPlayer="*res://managers/music_player.tscn"
+SoundPlayer="*res://managers/sound_player.tscn"
 
 [debug]
 

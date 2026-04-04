@@ -10,6 +10,7 @@ var state := State.IDLE
 
 func _ready() -> void:
 	damageReceiver.damageReceived.connect(onDamageReceived.bind())
+	$CollisionShape2D.disabled = true
 
 func _process(_delta: float) -> void:
 	handleAnimation()
@@ -22,4 +23,4 @@ func handleAnimation() -> void:
 
 func onDamageReceived() -> void:
 	state = State.DEATH
-	$CollisionShape2D.set_deferred("disabled", true)
+	SoundPlayer.play(SoundManager.Sound.HURT)

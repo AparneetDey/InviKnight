@@ -9,4 +9,5 @@ func _ready() -> void:
 func onPlayerEntered(body: Node2D) -> void:
 	if(body is Player):
 		SignalManager.pickedInvincibility.emit(invincibilityTime)
+		SoundPlayer.play(SoundManager.Sound.PICK_UP)
 		queue_free()

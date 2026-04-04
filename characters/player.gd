@@ -9,6 +9,7 @@ const GRAVITY = 500
 @export var friction : int
 @export var jumpIntensity : int
 @export var maxSpeed : int
+@export var timeAddOnKill : float
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var characterSprite : Sprite2D = $CharacterSprite
@@ -85,6 +86,7 @@ func handleInput() -> void:
 	if(Input.is_action_just_pressed("jump") and is_on_floor() and canJump()):
 		state = State.JUMP
 		velocity.y = -jumpIntensity
+		SoundPlayer.play(SoundManager.Sound.JUMP)
 	
 	if(Input.is_action_just_pressed("dash") and state != State.DASH and canDash()):
 		if((Time.get_ticks_msec() - timeSinceDashed) > durationJustDashed):
@@ -106,7 +108,7 @@ func handleMovement(delta: float) -> void:
 		dashDir = Vector2.RIGHT if dir > 0 else Vector2.LEFT
 
 func canMove() -> bool:
-	return state==State.IDLE or state == State.WALK
+	return state==State.IDLE or state == State.WALK or state == State.JUMP
 
 func canJump() -> bool:
 	return state == State.IDLE or state == State.WALK
@@ -137,24 +139,32 @@ func onBreakWall(body: Node2D) -> void:
 func onDamageEmit(receiver: DamageReceiver) -> void:
 	if(isInvincible):
 		receiver.damageReceived.emit()
+		var newTime := invincibleTimer.time_left + timeAddOnKill
+		invincibleTimer.wait_time = newTime
+		invincibleTimer.start()
 	else:
 		state = State.FALL
 		velocity = Vector2.ZERO
+		
 
 func onPickedInvincibility(invincibilityTime: float) -> void:
 	if(isInvincible):
 		var newTime := invincibleTimer.time_left + invincibilityTime
 		invincibleTimer.wait_time = newTime
+		invincibleTimer.start()
 	else:
 		isInvincible = true
 		invincibleTimer.wait_time = invincibilityTime
+	
 	state = State.POWER_UP
 	velocity = Vector2.ZERO
+	SoundPlayer.play(SoundManager.Sound.POWER_UP)
 
 func onInvincibilityTimeOut() -> void:
 	isInvincible = false
 	state = State.POWER_DOWN
 	velocity = Vector2.ZERO
+	SoundPlayer.play(SoundManager.Sound.POWER_DOWN)
 
 func onStageComplete() -> void:
 	state = State.FROZEN

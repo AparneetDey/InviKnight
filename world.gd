@@ -10,12 +10,13 @@ const STAGE_MAP := [
 @export var player : Player
 
 var currentStageScene : Stage = null
-var stageIndex : int = 2
+var stageIndex : int = 0
 
 func _ready() -> void:
 	handleStageLoad()
 	SignalManager.stageRetry.connect(onStageRetry.bind())
 	SignalManager.stageNext.connect(onStageNext.bind())
+	MusicPlayer.play()
 
 func handleStageLoad() -> void:
 	if(currentStageScene):

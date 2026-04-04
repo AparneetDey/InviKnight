@@ -15,3 +15,4 @@ func onBreakWall(wallPosition: Vector2) -> void:
 			if(data and data.get_custom_data("breakable")):
 				set_cell(target, -1)
 				SignalManager.spawnEffect.emit(to_global(map_to_local(target)))
+				SoundPlayer.play(SoundManager.Sound.EXPLOSION, true)
