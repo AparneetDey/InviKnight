@@ -1,6 +1,8 @@
 class_name Stage
 extends Node2D
 
+@export var levelTime : float
+
 @onready var checkpoint : Checkpoint = $Checkpoint
 @onready var playerSpawnPosition : Node2D = $PlayerSpawnPosition
 

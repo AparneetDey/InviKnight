@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://d44gri74vlid"]
+
+[ext_resource type="Script" uid="uid://054tkxkola15" path="res://ui/time_label.gd" id="1_ipbrs"]
+
+[node name="TimeLabel" type="Label"]
+offset_right = 61.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "15:00"
+script = ExtResource("1_ipbrs")
+
+[node name="Backdrop" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.17254902)

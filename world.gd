@@ -11,25 +11,42 @@ const STAGE_MAP := [
 
 var currentStageScene : Stage = null
 var stageIndex : int = 0
+var timeLeft := 0.0
+var timerActive := false
 
 func _ready() -> void:
 	handleStageLoad()
+	SignalManager.stageCompleted.connect(onTimerPause)
+	SignalManager.stageOver.connect(onTimerPause)
 	SignalManager.stageRetry.connect(onStageRetry.bind())
 	SignalManager.stageNext.connect(onStageNext.bind())
 	MusicPlayer.play()
 
+func _process(delta: float) -> void:
+	if(timerActive):
+		if(timeLeft > 0):
+			SignalManager.updateLevelTime.emit(timeLeft)
+			timeLeft -= delta
+		else:
+			SignalManager.updateLevelTime.emit(0.0)
+			SignalManager.stageOver.emit()
+
 func handleStageLoad() -> void:
+	timerActive = false
 	if(currentStageScene):
 		currentStageScene.queue_free()
 		currentStageScene = null
 	
 	currentStageScene = STAGE_MAP[stageIndex].instantiate()
+	timeLeft = currentStageScene.levelTime
 	add_child(currentStageScene)
+	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
 	player.state = player.State.IDLE
 	player.isInvincible = false
 	player.invincibleTimer.stop()
+	player.hasStoredPower = true
 
 func onStageRetry() -> void:
 	handleStageLoad()
@@ -41,3 +58,6 @@ func onStageNext() -> void:
 		stageIndex = 0
 	
 	handleStageLoad()
+
+func onTimerPause() -> void:
+	timerActive = false

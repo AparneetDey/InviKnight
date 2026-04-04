@@ -9,3 +9,5 @@ signal stageNext
 signal stageOver
 
 signal spawnEffect(spawnPosition: Vector2)
+
+signal updateLevelTime(time: float)

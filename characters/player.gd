@@ -2,6 +2,7 @@ class_name  Player
 extends CharacterBody2D
 
 const GRAVITY = 500
+const STORED_POWER_TIME := 2.5
 
 @export var acceleration : int
 @export var dashSpeed : int
@@ -39,10 +40,12 @@ var isInvincible : bool = false
 var speed : int = 0
 var state = State.IDLE
 var timeSinceDashed : float = Time.get_ticks_msec()
+var hasStoredPower : bool = true
 
 func _init() -> void:
 	SignalManager.pickedInvincibility.connect(onPickedInvincibility.bind())
-	SignalManager.stageCompleted.connect(onStageComplete.bind())
+	SignalManager.stageCompleted.connect(onPlayerFrozen.bind())
+	SignalManager.stageOver.connect(onPlayerFrozen.bind())
 
 func _ready() -> void:
 	speed = maxSpeed
@@ -93,6 +96,9 @@ func handleInput() -> void:
 			state = State.DASH
 			velocity = dashDir * dashSpeed
 			dashTimer.start()
+	
+	if(Input.is_action_just_pressed("powerUp") and hasStoredPower):
+		onPickedInvincibility(STORED_POWER_TIME)
 
 func handleMovement(delta: float) -> void:
 	if(not canMove()):
@@ -145,7 +151,6 @@ func onDamageEmit(receiver: DamageReceiver) -> void:
 	else:
 		state = State.FALL
 		velocity = Vector2.ZERO
-		
 
 func onPickedInvincibility(invincibilityTime: float) -> void:
 	if(isInvincible):
@@ -166,6 +171,7 @@ func onInvincibilityTimeOut() -> void:
 	velocity = Vector2.ZERO
 	SoundPlayer.play(SoundManager.Sound.POWER_DOWN)
 
-func onStageComplete() -> void:
-	state = State.FROZEN
-	velocity = Vector2.ZERO
+func onPlayerFrozen() -> void:
+	if(state != State.DEATH):
+		state = State.FROZEN
+		velocity = Vector2.ZERO

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0rr3ej8ik6o"]
+[gd_scene load_steps=9 format=3 uid="uid://0rr3ej8ik6o"]
 
 [ext_resource type="Script" uid="uid://by5yo3obqv1k8" path="res://managers/sound_manager.gd" id="1_kj73w"]
 [ext_resource type="AudioStream" uid="uid://y7rw253udqwd" path="res://assets/sounds/coin.wav" id="2_bg1jl"]
@@ -7,31 +7,28 @@
 [ext_resource type="AudioStream" uid="uid://xmdx778p85ed" path="res://assets/sounds/jump.wav" id="5_kkimj"]
 [ext_resource type="AudioStream" uid="uid://cqsdcym34vfva" path="res://assets/sounds/power_up.wav" id="6_840pv"]
 [ext_resource type="AudioStream" uid="uid://er7l6wera8h5" path="res://assets/sounds/power_down.wav" id="7_lnxut"]
+[ext_resource type="AudioStream" uid="uid://wc63cjicpvhp" path="res://assets/sounds/level-completed.wav" id="8_dicsa"]
 
 [node name="SoundPlayer" type="Node"]
 script = ExtResource("1_kj73w")
-tweakAmount = 0.3
 
 [node name="SFXPickUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_bg1jl")
-bus = &"Sound"
 
 [node name="SFXExplosion" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_lnxut")
-bus = &"Sound"
 
 [node name="SFXHurt" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_dicsa")
-bus = &"Sound"
 
 [node name="SFXJump" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_kkimj")
-bus = &"Sound"
 
 [node name="SFXPowerUp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_840pv")
-bus = &"Sound"
 
 [node name="SFXPowerDown" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_lnxut")
-bus = &"Sound"
+
+[node name="SFXLevelComplete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_dicsa")
