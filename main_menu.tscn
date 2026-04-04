@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyar3qbfjkkik"]
+
+[ext_resource type="Texture2D" uid="uid://be1r1uesem6dk" path="res://assets/main-menu/main-menu-bg.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://deml0kssdud5i" path="res://main_menu.gd" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://ptqhqoeqp7ao" path="res://assets/main-menu/main-menu-character.png" id="2_7vrkn"]
+[ext_resource type="Texture2D" uid="uid://c5ph17bv5lk43" path="res://assets/main-menu/main-menu-bottle.png" id="3_fu7sn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jix8l")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_06t4h")
+expand_mode = 1
+
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -25.000002
+offset_top = 125.0
+offset_right = 103.0
+offset_bottom = 253.0
+rotation = -0.2617994
+scale = Vector2(2, 2)
+texture = ExtResource("2_7vrkn")
+
+[node name="Bottle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 50.0
+offset_right = 596.0
+offset_bottom = 178.0
+rotation = 0.2617994
+texture = ExtResource("3_fu7sn")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = -28.5
+offset_right = 78.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7550796, 0.8369616, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7529412)
+theme_override_font_sizes/font_size = 32
+text = "InviKnight"
+
+[node name="StartButton" type="Button" parent="Content"]
+layout_mode = 2
+text = "START"

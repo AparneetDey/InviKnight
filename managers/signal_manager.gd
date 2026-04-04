@@ -11,3 +11,5 @@ signal stageOver
 signal spawnEffect(spawnPosition: Vector2)
 
 signal updateLevelTime(time: float)
+
+signal updateStars(stars: int)

@@ -22,6 +22,7 @@ func onStageComplete() -> void:
 func onStageOver() -> void:
 	if(stageOverScene == null):
 		stageOverScene = STAGE_OVER_PREFAB.instantiate()
+		SoundPlayer.play(SoundManager.Sound.LEVEL_OVER)
 		add_child(stageOverScene)
 
 func onStageStart() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0rr3ej8ik6o"]
+[gd_scene load_steps=10 format=3 uid="uid://0rr3ej8ik6o"]
 
 [ext_resource type="Script" uid="uid://by5yo3obqv1k8" path="res://managers/sound_manager.gd" id="1_kj73w"]
 [ext_resource type="AudioStream" uid="uid://y7rw253udqwd" path="res://assets/sounds/coin.wav" id="2_bg1jl"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cqsdcym34vfva" path="res://assets/sounds/power_up.wav" id="6_840pv"]
 [ext_resource type="AudioStream" uid="uid://er7l6wera8h5" path="res://assets/sounds/power_down.wav" id="7_lnxut"]
 [ext_resource type="AudioStream" uid="uid://wc63cjicpvhp" path="res://assets/sounds/level-completed.wav" id="8_dicsa"]
+[ext_resource type="AudioStream" uid="uid://iwpjb118mirw" path="res://assets/sounds/level-over.mp3" id="9_kkimj"]
 
 [node name="SoundPlayer" type="Node"]
 script = ExtResource("1_kj73w")
@@ -32,3 +33,6 @@ stream = ExtResource("7_lnxut")
 
 [node name="SFXLevelComplete" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_dicsa")
+
+[node name="SFXLevelOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kkimj")

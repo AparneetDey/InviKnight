@@ -1,6 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://lnvdsicll0v0"]
+[gd_scene load_steps=6 format=3 uid="uid://lnvdsicll0v0"]
 
 [ext_resource type="Script" uid="uid://consss30w8dcx" path="res://ui/stage_complete_ui.gd" id="1_tup1t"]
+[ext_resource type="Texture2D" uid="uid://c01a748ot0p2l" path="res://assets/sprites/no_star-sprite.png" id="2_jav61"]
+
+[sub_resource type="Animation" id="Animation_tup1t"]
+resource_name = "popup"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jav61"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jav61"]
+_data = {
+&"RESET": SubResource("Animation_jav61"),
+&"popup": SubResource("Animation_tup1t")
+}
 
 [node name="StageCompleteUI" type="Control"]
 layout_mode = 3
@@ -22,38 +61,103 @@ grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 0.30588236)
 
-[node name="StageCompleteLabel" type="Label" parent="."]
+[node name="Content" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+
+[node name="StageCompleteLabel" type="Label" parent="Content"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -114.5
-offset_top = 57.0
-offset_right = 114.5
-offset_bottom = 96.0
+offset_left = -114.0
+offset_top = -96.0
+offset_right = 115.0
+offset_bottom = -57.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
 text = "Stage Completed"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RetryButton" type="Button" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="Content"]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 190.0
-offset_right = 210.0
-offset_bottom = 221.0
+offset_left = -64.0
+offset_top = -49.0
+offset_right = 64.0
+offset_bottom = -9.0
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_jav61")
+expand_mode = 2
+
+[node name="Star2" type="TextureRect" parent="Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_jav61")
+expand_mode = 2
+
+[node name="Star3" type="TextureRect" parent="Content/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_jav61")
+expand_mode = 2
+
+[node name="RetryButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 9.0
+offset_right = -89.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 action_mode = 0
 text = "Retry"
 
-[node name="NextButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 190.0
-offset_right = 465.0
-offset_bottom = 221.0
+[node name="NextButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 98.0
+offset_top = 11.0
+offset_right = 143.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Next"
 
-[node name="HomeButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-disabled = true
+[node name="HomeButton" type="Button" parent="Content"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = 10.0
+offset_right = 31.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Home"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_jav61")
+}
+autoplay = "popup"

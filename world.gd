@@ -10,17 +10,19 @@ const STAGE_MAP := [
 @export var player : Player
 
 var currentStageScene : Stage = null
+var collectedBottles : int = 0
 var stageIndex : int = 0
 var timeLeft := 0.0
 var timerActive := false
+var totalBottlesInLevel : int = 0
 
 func _ready() -> void:
 	handleStageLoad()
-	SignalManager.stageCompleted.connect(onTimerPause)
-	SignalManager.stageOver.connect(onTimerPause)
+	SignalManager.stageCompleted.connect(onStageCompleted.bind())
+	SignalManager.stageOver.connect(onStageOver.bind())
 	SignalManager.stageRetry.connect(onStageRetry.bind())
 	SignalManager.stageNext.connect(onStageNext.bind())
-	MusicPlayer.play()
+	SignalManager.pickedInvincibility.connect(onBottleCollected.bind())
 
 func _process(delta: float) -> void:
 	if(timerActive):
@@ -33,6 +35,7 @@ func _process(delta: float) -> void:
 
 func handleStageLoad() -> void:
 	timerActive = false
+	collectedBottles = 0
 	if(currentStageScene):
 		currentStageScene.queue_free()
 		currentStageScene = null
@@ -40,6 +43,7 @@ func handleStageLoad() -> void:
 	currentStageScene = STAGE_MAP[stageIndex].instantiate()
 	timeLeft = currentStageScene.levelTime
 	add_child(currentStageScene)
+	totalBottlesInLevel = currentStageScene.totalBottles
 	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
@@ -56,8 +60,23 @@ func onStageNext() -> void:
 		stageIndex += 1
 	else:
 		stageIndex = 0
-	
 	handleStageLoad()
 
-func onTimerPause() -> void:
+func onStageCompleted() -> void:
 	timerActive = false
+	SignalManager.updateStars.emit(calculateStars())
+
+func onStageOver() -> void:
+	timerActive = false
+	SignalManager.updateStars.emit(0)
+
+func onBottleCollected(_time: float) -> void:
+	collectedBottles += 1
+
+func calculateStars() -> int:
+	var per := (float(collectedBottles) / totalBottlesInLevel) * 100
+	
+	if(per >= 100): return 3
+	elif(per >= 60): return 2
+	elif(per >= 30): return 1
+	return 0
