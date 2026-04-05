@@ -1,7 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://lnvdsicll0v0"]
+[gd_scene load_steps=7 format=3 uid="uid://lnvdsicll0v0"]
 
+[ext_resource type="Theme" uid="uid://waek6bhycivs" path="res://default_theme.tres" id="1_ncy8f"]
 [ext_resource type="Script" uid="uid://consss30w8dcx" path="res://ui/stage_complete_ui.gd" id="1_tup1t"]
 [ext_resource type="Texture2D" uid="uid://c01a748ot0p2l" path="res://assets/sprites/no_star-sprite.png" id="2_jav61"]
+
+[sub_resource type="Animation" id="Animation_jav61"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Content:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_tup1t"]
 resource_name = "popup"
@@ -20,21 +36,6 @@ tracks/0/keys = {
 "values": [Vector2(0.1, 0.1), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jav61"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Content:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.1, 0.1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jav61"]
 _data = {
 &"RESET": SubResource("Animation_jav61"),
@@ -49,6 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_ncy8f")
 script = ExtResource("1_tup1t")
 
 [node name="Backdrop" type="ColorRect" parent="."]
@@ -70,17 +72,16 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.1, 0.1)
 
 [node name="StageCompleteLabel" type="Label" parent="Content"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -114.0
-offset_top = -96.0
-offset_right = 115.0
-offset_bottom = -57.0
+offset_left = -117.0
+offset_top = -132.0
+offset_right = 118.0
+offset_bottom = -85.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
 text = "Stage Completed"
@@ -118,9 +119,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -139.0
-offset_top = 9.0
+offset_top = 57.0
 offset_right = -89.0
-offset_bottom = 40.0
+offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 action_mode = 0
@@ -134,9 +135,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 98.0
-offset_top = 11.0
+offset_top = 59.0
 offset_right = 143.0
-offset_bottom = 42.0
+offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Next"
@@ -149,9 +150,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -24.0
-offset_top = 10.0
+offset_top = 58.0
 offset_right = 31.0
-offset_bottom = 41.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Home"

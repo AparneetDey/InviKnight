@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyar3qbfjkkik"]
+[gd_scene load_steps=6 format=3 uid="uid://dyar3qbfjkkik"]
 
 [ext_resource type="Texture2D" uid="uid://be1r1uesem6dk" path="res://assets/main-menu/main-menu-bg.png" id="1_06t4h"]
+[ext_resource type="Theme" uid="uid://waek6bhycivs" path="res://default_theme.tres" id="1_glbon"]
 [ext_resource type="Script" uid="uid://deml0kssdud5i" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://ptqhqoeqp7ao" path="res://assets/main-menu/main-menu-character.png" id="2_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://c5ph17bv5lk43" path="res://assets/main-menu/main-menu-bottle.png" id="3_fu7sn"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_glbon")
 script = ExtResource("1_jix8l")
 
 [node name="Background" type="TextureRect" parent="."]

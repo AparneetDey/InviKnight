@@ -50,7 +50,6 @@ func handleStageLoad() -> void:
 	player.state = player.State.IDLE
 	player.isInvincible = false
 	player.invincibleTimer.stop()
-	player.hasStoredPower = true
 
 func onStageRetry() -> void:
 	handleStageLoad()
@@ -78,5 +77,4 @@ func calculateStars() -> int:
 	
 	if(per >= 100): return 3
 	elif(per >= 60): return 2
-	elif(per >= 30): return 1
-	return 0
+	return 1

@@ -2,7 +2,6 @@ class_name  Player
 extends CharacterBody2D
 
 const GRAVITY = 500
-const STORED_POWER_TIME := 2.5
 
 @export var acceleration : int
 @export var dashSpeed : int
@@ -40,7 +39,6 @@ var isInvincible : bool = false
 var speed : int = 0
 var state = State.IDLE
 var timeSinceDashed : float = Time.get_ticks_msec()
-var hasStoredPower : bool = true
 
 func _init() -> void:
 	SignalManager.pickedInvincibility.connect(onPickedInvincibility.bind())
@@ -96,9 +94,6 @@ func handleInput() -> void:
 			state = State.DASH
 			velocity = dashDir * dashSpeed
 			dashTimer.start()
-	
-	if(Input.is_action_just_pressed("powerUp") and hasStoredPower):
-		onPickedInvincibility(STORED_POWER_TIME)
 
 func handleMovement(delta: float) -> void:
 	if(not canMove()):

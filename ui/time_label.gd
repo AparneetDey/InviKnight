@@ -8,4 +8,4 @@ func onUpdateLevelTime(time: float) -> void:
 	var sec := int(time)
 	var msec := fmod(time, 1.0) * 100
 	
-	text = "%02d:%02d" % [sec, msec]
+	text = "  %02d:%02d  " % [sec, msec]
