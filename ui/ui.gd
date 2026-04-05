@@ -46,3 +46,6 @@ func onStageStart() -> void:
 		stageCompleteScene.queue_free()
 	if(stageOverScene):
 		stageOverScene.queue_free()
+	if(stagePausedScene):
+		stagePausedScene.queue_free()
+		get_tree().paused = false

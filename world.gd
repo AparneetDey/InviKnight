@@ -12,8 +12,9 @@ const STAGE_MAP := [
 var currentStageScene : Stage = null
 var collectedBottles : int = 0
 var stageIndex : int = 0
-var timeLeft := 0.0
-var timerActive := false
+var totalLevelTime : float = 0
+var timeLeft : float = 0.0
+var timerActive : bool = false
 var totalBottlesInLevel : int = 0
 
 func _ready() -> void:
@@ -42,6 +43,7 @@ func handleStageLoad() -> void:
 	
 	currentStageScene = STAGE_MAP[stageIndex].instantiate()
 	timeLeft = currentStageScene.levelTime
+	totalLevelTime = currentStageScene.levelTime
 	add_child(currentStageScene)
 	totalBottlesInLevel = currentStageScene.totalBottles
 	timerActive = true
@@ -63,7 +65,9 @@ func onStageNext() -> void:
 
 func onStageCompleted() -> void:
 	timerActive = false
+	SignalManager.updateLevelTime.emit(timeLeft)
 	SignalManager.updateStars.emit(calculateStars())
+	SignalManager.showTimeLeft.emit(totalLevelTime - timeLeft)
 
 func onStageOver() -> void:
 	timerActive = false

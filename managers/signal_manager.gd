@@ -14,5 +14,6 @@ signal spawnEffect(spawnPosition: Vector2)
 signal updateLevelTime(time: float)
 
 signal updateStars(stars: int)
+signal showTimeLeft(time: float)
 
 signal closeMenu

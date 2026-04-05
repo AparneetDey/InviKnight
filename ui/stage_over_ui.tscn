@@ -10,3 +10,6 @@ visible = false
 [node name="HomeButton" parent="Content" index="4"]
 offset_left = 92.0
 offset_right = 147.0
+
+[node name="TimeLabel" parent="Content" index="6"]
+visible = false

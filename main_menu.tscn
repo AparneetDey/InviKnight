@@ -127,7 +127,7 @@ alignment = 1
 [node name="Title" type="Label" parent="Content"]
 custom_minimum_size = Vector2(320, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7550796, 0.8369616, 1, 1)
+theme_override_colors/font_color = Color(0.4862745, 0.46666667, 0.43529412, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7529412)
 theme_override_fonts/font = ExtResource("6_nlkkf")
 theme_override_font_sizes/font_size = 32

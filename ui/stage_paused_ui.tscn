@@ -15,3 +15,6 @@ visible = false
 
 [node name="ContinueButton" parent="Content" index="5"]
 visible = true
+
+[node name="TimeLabel" parent="Content" index="6"]
+visible = false

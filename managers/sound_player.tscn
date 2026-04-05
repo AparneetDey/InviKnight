@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://d4ivuj5rqj3yk" path="res://assets/sounds/tap.wav" id="10_840pv"]
 
 [node name="SoundPlayer" type="Node"]
+process_mode = 3
 script = ExtResource("1_kj73w")
 
 [node name="SFXPickUp" type="AudioStreamPlayer" parent="."]

@@ -10,6 +10,7 @@ const FULL_STAR := preload("res://assets/sprites/full_star-sprite.png")
 @onready var nextButton : Button = $Content/NextButton
 @onready var homeButton : Button = $Content/HomeButton
 @onready var continueButton : Button = $Content/ContinueButton
+@onready var timeLabel : Label = $Content/TimeLabel
 @onready var stars : Array[TextureRect] = [$Content/HBoxContainer/Star1, $Content/HBoxContainer/Star2, $Content/HBoxContainer/Star3]
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 	homeButton.pressed.connect(onHomeButtonPressed.bind())
 	continueButton.pressed.connect(onContinueButtonPressed.bind())
 	SignalManager.updateStars.connect(onUpdateStars.bind())
+	SignalManager.showTimeLeft.connect(onShowTimeLeft.bind())
 
 func onRetryButtonPressed() -> void:
 	SignalManager.stageRetry.emit()
@@ -41,3 +43,9 @@ func onUpdateStars(starCount: int) -> void:
 			stars[i].texture = FULL_STAR
 		else:
 			stars[i].texture = NO_STAR
+
+func onShowTimeLeft(time: float) -> void:
+	var sec := int(time)
+	var msec := fmod(time, 1.0) * 100
+	
+	timeLabel.text = "%02d:%02d" % [sec, msec]
