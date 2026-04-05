@@ -5,13 +5,15 @@ const STAGE_MAP := [
 	preload("res://stages/level_1.tscn"),
 	preload("res://stages/level_2.tscn"),
 	preload("res://stages/level_3.tscn"),
+	preload("res://stages/level_4.tscn"),
 ]
 
 @export var player : Player
 
+var stageIndex : int = 0
+
 var currentStageScene : Stage = null
 var collectedBottles : int = 0
-var stageIndex : int = 0
 var totalLevelTime : float = 0
 var timeLeft : float = 0.0
 var timerActive : bool = false
