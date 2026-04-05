@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqin0rbact4ev"]
+
+[ext_resource type="PackedScene" uid="uid://lnvdsicll0v0" path="res://ui/stage_complete_ui.tscn" id="1_ynkd4"]
+
+[node name="StagePausedUI" instance=ExtResource("1_ynkd4")]
+
+[node name="HeaderLabel" parent="Content" index="0"]
+text = "Paused"
+
+[node name="HBoxContainer" parent="Content" index="1"]
+visible = false
+
+[node name="NextButton" parent="Content" index="3"]
+visible = false
+
+[node name="ContinueButton" parent="Content" index="5"]
+visible = true

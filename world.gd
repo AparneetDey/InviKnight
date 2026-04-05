@@ -47,7 +47,7 @@ func handleStageLoad() -> void:
 	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
-	player.state = player.State.IDLE
+	player.state = Player.State.IDLE
 	player.isInvincible = false
 	player.invincibleTimer.stop()
 

@@ -7,9 +7,12 @@ signal stageCompleted
 signal stageRetry
 signal stageNext
 signal stageOver
+signal stagePaused
 
 signal spawnEffect(spawnPosition: Vector2)
 
 signal updateLevelTime(time: float)
 
 signal updateStars(stars: int)
+
+signal closeMenu

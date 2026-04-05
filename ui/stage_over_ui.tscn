@@ -4,11 +4,6 @@
 
 [node name="StageOverUI" instance=ExtResource("1_v0wj6")]
 
-[node name="StageCompleteLabel" parent="Content" index="0"]
-offset_top = -130.0
-offset_bottom = -83.0
-text = "Stage Over"
-
 [node name="NextButton" parent="Content" index="3"]
 visible = false
 

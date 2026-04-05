@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsrqdssrdpn4w"]
+
+[ext_resource type="PackedScene" uid="uid://cv6e65diwm083" path="res://ui/controls_ui.tscn" id="1_qj6h0"]
+[ext_resource type="Texture2D" uid="uid://0b3vsp6s4kbl" path="res://assets/sprites/player-icon-sprite.png" id="2_h3kuk"]
+[ext_resource type="Texture2D" uid="uid://8xhj67c0yv5e" path="res://assets/sprites/bottle-icon-sprite.png" id="3_0trrn"]
+[ext_resource type="Texture2D" uid="uid://ba38vei0olynq" path="res://assets/sprites/enemy-icon-sprite.png" id="4_kd2wi"]
+
+[node name="ObjectiveUI" instance=ExtResource("1_qj6h0")]
+
+[node name="HeaderLabel" parent="MarginContainer/VBoxContainer" index="0"]
+text = "Objective"
+
+[node name="Icon" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control1" index="0"]
+texture_normal = ExtResource("2_h3kuk")
+
+[node name="ControlLabel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control1" index="1"]
+text = "Knight - Wanting to be Invincible"
+uppercase = false
+
+[node name="Control2" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="1"]
+theme_override_constants/separation = 45
+
+[node name="Icon" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2" index="0"]
+texture_normal = ExtResource("3_0trrn")
+
+[node name="ControlLabel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control2" index="1"]
+text = "Potion - Makes you invincible for
+some time.(You can dash to 
+break walls)"
+uppercase = false
+
+[node name="Icon" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3" index="0"]
+texture_normal = ExtResource("4_kd2wi")
+
+[node name="ControlLabel" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3" index="1"]
+text = "Enemy - Be invincible to kill or 
+get killed.(You can get some
+invincibility from them)"
+uppercase = false
+
+[node name="Control4" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="3"]
+visible = false
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+text = "You need to get to the flag and collect all the
+potions to get 3 stars."

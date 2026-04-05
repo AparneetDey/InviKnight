@@ -61,7 +61,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-color = Color(0, 0, 0, 0.30588236)
+color = Color(0, 0, 0, 0.5137255)
 
 [node name="Content" type="Control" parent="."]
 layout_mode = 1
@@ -73,15 +73,15 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StageCompleteLabel" type="Label" parent="Content"]
+[node name="HeaderLabel" type="Label" parent="Content"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -117.0
+offset_left = -184.5
 offset_top = -132.0
-offset_right = 118.0
-offset_bottom = -85.0
+offset_right = 185.5
+offset_bottom = -82.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 28
 text = "Stage Completed"
@@ -118,9 +118,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -139.0
+offset_left = -162.0
 offset_top = 57.0
-offset_right = -89.0
+offset_right = -90.0
 offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -134,9 +134,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 98.0
+offset_left = 91.5
 offset_top = 59.0
-offset_right = 143.0
+offset_right = 149.5
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -149,13 +149,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -24.0
+offset_left = -30.5
 offset_top = 58.0
-offset_right = 31.0
+offset_right = 33.5
 offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Home"
+
+[node name="ContinueButton" type="Button" parent="Content"]
+visible = false
+layout_mode = 0
+offset_left = 93.0
+offset_top = 59.0
+offset_right = 203.0
+offset_bottom = 90.0
+text = "Continue"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

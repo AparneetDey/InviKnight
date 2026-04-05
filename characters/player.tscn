@@ -293,7 +293,7 @@ monitorable = true
 shape = SubResource("RectangleShape2D_tory2")
 
 [node name="DashTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.5
 one_shot = true
 
 [node name="InvincibleTimer" type="Timer" parent="."]

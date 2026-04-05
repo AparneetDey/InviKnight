@@ -136,6 +136,9 @@ func onBreakWall(body: Node2D) -> void:
 	if(body is TileMapLayer):
 		if(isInvincible):
 			SignalManager.hitBreakbleWall.emit(wallDamageEmitter.global_position)
+			state = State.IDLE
+			velocity = Vector2.ZERO
+			dashTimer.stop()
 
 func onDamageEmit(receiver: DamageReceiver) -> void:
 	if(isInvincible):

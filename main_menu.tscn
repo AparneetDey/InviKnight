@@ -1,10 +1,74 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyar3qbfjkkik"]
+[gd_scene load_steps=10 format=3 uid="uid://dyar3qbfjkkik"]
 
 [ext_resource type="Texture2D" uid="uid://be1r1uesem6dk" path="res://assets/main-menu/main-menu-bg.png" id="1_06t4h"]
 [ext_resource type="Theme" uid="uid://waek6bhycivs" path="res://default_theme.tres" id="1_glbon"]
 [ext_resource type="Script" uid="uid://deml0kssdud5i" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://ptqhqoeqp7ao" path="res://assets/main-menu/main-menu-character.png" id="2_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://c5ph17bv5lk43" path="res://assets/main-menu/main-menu-bottle.png" id="3_fu7sn"]
+[ext_resource type="FontFile" uid="uid://cmicr4w4rj7k4" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_nlkkf"]
+
+[sub_resource type="Animation" id="Animation_nlkkf"]
+resource_name = "float"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-63, 130), Vector2(-63, 120)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(497, 51.000004), Vector2(497, 41)]
+}
+
+[sub_resource type="Animation" id="Animation_qe12f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-63, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(497, 51.000004)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qtwp"]
+_data = {
+&"RESET": SubResource("Animation_qe12f"),
+&"float": SubResource("Animation_nlkkf")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -28,20 +92,20 @@ expand_mode = 1
 
 [node name="Character" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -25.000002
-offset_top = 125.0
-offset_right = 103.0
-offset_bottom = 253.0
+offset_left = -63.0
+offset_top = 130.0
+offset_right = 65.0
+offset_bottom = 258.00006
 rotation = -0.2617994
 scale = Vector2(2, 2)
 texture = ExtResource("2_7vrkn")
 
 [node name="Bottle" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 468.0
-offset_top = 50.0
-offset_right = 596.0
-offset_bottom = 178.0
+offset_left = 497.0
+offset_top = 51.000004
+offset_right = 625.0
+offset_bottom = 179.0
 rotation = 0.2617994
 texture = ExtResource("3_fu7sn")
 
@@ -61,12 +125,39 @@ grow_vertical = 2
 alignment = 1
 
 [node name="Title" type="Label" parent="Content"]
+custom_minimum_size = Vector2(320, 50)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7550796, 0.8369616, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.7529412)
+theme_override_fonts/font = ExtResource("6_nlkkf")
 theme_override_font_sizes/font_size = 32
-text = "InviKnight"
+text = "INVIKNIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
 
 [node name="StartButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "START"
+
+[node name="ControlsButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "CONTROLS"
+
+[node name="ObjectiveButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "OBJECTIVE"
+
+[node name="ExitButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "EXIT"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8qtwp")
+}
+autoplay = "float"

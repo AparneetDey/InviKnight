@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://waek6bhycivs"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://waek6bhycivs"]
 
 [ext_resource type="Texture2D" uid="uid://cbk0oqpwrjjdw" path="res://assets/sprites/GUI-sprites.png" id="1_e7bfs"]
+[ext_resource type="FontFile" uid="uid://j0krm4sjaaqe" path="res://assets/fonts/PixelOperator8.ttf" id="2_3taad"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7j863"]
 texture = ExtResource("1_e7bfs")
@@ -35,8 +36,10 @@ texture_margin_bottom = 4.0
 region_rect = Rect2(3, 41, 26, 14)
 
 [resource]
+default_font = ExtResource("2_3taad")
+default_font_size = 16
 Button/colors/font_color = Color(0.6627451, 0, 0.36078432, 1)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_focus_color = Color(0.6627451, 0, 0.36078432, 1)
 Button/colors/font_hover_color = Color(0.6627451, 0, 0.36078432, 1)
 Button/colors/font_pressed_color = Color(0.6627451, 0, 0.36078432, 1)
 Button/styles/hover = SubResource("StyleBoxTexture_7j863")

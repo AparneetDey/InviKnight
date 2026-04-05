@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://qynn62ibxmrl"]
+
+[ext_resource type="Theme" uid="uid://waek6bhycivs" path="res://default_theme.tres" id="1_w46tp"]
+[ext_resource type="PackedScene" uid="uid://d44gri74vlid" path="res://ui/time_label.tscn" id="2_7hrjk"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w46tp")
+
+[node name="TimeLabel" parent="." instance=ExtResource("2_7hrjk")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -76.5
+offset_top = 8.0
+offset_right = 76.5
+offset_bottom = 42.0
+grow_horizontal = 2
+text = "  15:00  "
