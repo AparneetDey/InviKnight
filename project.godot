@@ -13,7 +13,7 @@ config_version=5
 config/name="InviKnight"
 run/main_scene="uid://dyar3qbfjkkik"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/image="uid://6ih2c7264lyn"
+boot_splash/image="uid://5td3ffaiiby"
 config/icon="uid://cqy4hph1oao1c"
 
 [audio]
