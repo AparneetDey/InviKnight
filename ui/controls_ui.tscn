@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv6e65diwm083"]
+[gd_scene load_steps=9 format=3 uid="uid://cv6e65diwm083"]
 
 [ext_resource type="Theme" uid="uid://waek6bhycivs" path="res://default_theme.tres" id="1_4pxd1"]
 [ext_resource type="Texture2D" uid="uid://d32wfhgb8ws0d" path="res://assets/main-menu/panel-background-sprite.png" id="1_tnoxx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dosmgpvpyxjfj" path="res://assets/sprites/right-arrow-sprite.png" id="4_5rpig"]
 [ext_resource type="Texture2D" uid="uid://ciq7c3kawj35n" path="res://assets/sprites/jump-button-sprite.png" id="5_5rpig"]
 [ext_resource type="Texture2D" uid="uid://c6loo5kvcg8gx" path="res://assets/sprites/dash-button-sprite.png" id="6_05nbe"]
+[ext_resource type="Texture2D" uid="uid://6jwxl62i1txv" path="res://assets/sprites/tab-button-sprite.png" id="7_k8lmu"]
 
 [node name="ControlsUI" type="Control"]
 layout_mode = 3
@@ -100,6 +101,17 @@ texture_normal = ExtResource("5_5rpig")
 [node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
 layout_mode = 2
 text = "D - Jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Icon2" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
+layout_mode = 2
+texture_normal = ExtResource("7_k8lmu")
+
+[node name="ControlLabel2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
+layout_mode = 2
+text = "TAB - Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

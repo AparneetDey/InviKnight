@@ -38,6 +38,12 @@ get killed.(You can get some
 invincibility from them)"
 uppercase = false
 
+[node name="Icon2" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3" index="2"]
+visible = false
+
+[node name="ControlLabel2" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3" index="3"]
+visible = false
+
 [node name="Control4" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="3"]
 visible = false
 

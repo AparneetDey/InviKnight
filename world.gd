@@ -6,6 +6,7 @@ const STAGE_MAP := [
 	preload("res://stages/level_2.tscn"),
 	preload("res://stages/level_3.tscn"),
 	preload("res://stages/level_4.tscn"),
+	preload("res://stages/level_5.tscn"),
 ]
 
 @export var player : Player
