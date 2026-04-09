@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://doy30k4nadg1k"]
+
+[ext_resource type="PackedScene" uid="uid://dlagjq23hxqkr" path="res://characters/enemy.tscn" id="1_ve5ck"]
+[ext_resource type="Texture2D" uid="uid://mf2tfwhxcial" path="res://assets/sprites/slime_purple.png" id="2_ocpga"]
+
+[node name="EnemyPurple" instance=ExtResource("1_ve5ck")]
+
+[node name="CharacterSprite" parent="." index="0"]
+texture = ExtResource("2_ocpga")
+
+[editable path="DamageReceiver"]

@@ -2,6 +2,7 @@ class_name  Player
 extends CharacterBody2D
 
 const GRAVITY = 500
+const POWER_UP_BONUS = 50
 
 @export var acceleration : int
 @export var dashSpeed : int
@@ -13,6 +14,7 @@ const GRAVITY = 500
 
 @onready var animationPlayer : AnimationPlayer = $AnimationPlayer
 @onready var characterSprite : Sprite2D = $CharacterSprite
+@onready var collisionShape : CollisionShape2D = $CollisionShape2D
 @onready var dashTimer : Timer = $DashTimer
 @onready var emitterPivot : Node2D = $EmitterPivot
 @onready var enemyDamageEmitter : Area2D = $EnemyDamageEmitter
@@ -37,6 +39,7 @@ var dir : float = 0.0
 var dashDir : Vector2 = Vector2.RIGHT
 var isInvincible : bool = false
 var speed : int = 0
+var jumpForce : int = 0
 var state = State.IDLE
 var timeSinceDashed : float = Time.get_ticks_msec()
 
@@ -47,6 +50,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	speed = maxSpeed
+	jumpForce = jumpIntensity
 	dashTimer.timeout.connect(onDashTimeout.bind())
 	wallDamageEmitter.body_entered.connect(onBreakWall.bind())
 	enemyDamageEmitter.area_entered.connect(onDamageEmit.bind())
@@ -84,9 +88,9 @@ func applyFriction(delta: float) -> void:
 	velocity.x = move_toward(velocity.x , 0, friction*delta)
 
 func handleInput() -> void:
-	if(Input.is_action_just_pressed("jump") and is_on_floor() and canJump()):
+	if(Input.is_action_just_pressed("ui_up") and is_on_floor() and canJump()):
 		state = State.JUMP
-		velocity.y = -jumpIntensity
+		velocity.y = -jumpForce
 		SoundPlayer.play(SoundManager.Sound.JUMP)
 	
 	if(Input.is_action_just_pressed("dash") and state != State.DASH and canDash()):
@@ -136,9 +140,9 @@ func onBreakWall(body: Node2D) -> void:
 	if(body is TileMapLayer):
 		if(isInvincible):
 			SignalManager.hitBreakbleWall.emit(wallDamageEmitter.global_position)
-			state = State.IDLE
-			velocity = Vector2.ZERO
 			dashTimer.stop()
+		state = State.IDLE
+		velocity = Vector2.ZERO
 
 func onDamageEmit(receiver: DamageReceiver) -> void:
 	if(isInvincible):
@@ -158,6 +162,8 @@ func onPickedInvincibility(invincibilityTime: float) -> void:
 	else:
 		isInvincible = true
 		invincibleTimer.wait_time = invincibilityTime
+		speed += POWER_UP_BONUS
+		jumpForce += POWER_UP_BONUS
 	
 	state = State.POWER_UP
 	velocity = Vector2.ZERO
@@ -167,9 +173,13 @@ func onInvincibilityTimeOut() -> void:
 	isInvincible = false
 	state = State.POWER_DOWN
 	velocity = Vector2.ZERO
+	speed = maxSpeed
+	jumpForce = jumpIntensity
 	SoundPlayer.play(SoundManager.Sound.POWER_DOWN)
 
 func onPlayerFrozen() -> void:
 	if(state != State.DEATH):
 		state = State.FROZEN
 		velocity = Vector2.ZERO
+		speed = maxSpeed
+		jumpForce = jumpIntensity

@@ -100,18 +100,7 @@ texture_normal = ExtResource("5_5rpig")
 
 [node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
 layout_mode = 2
-text = "D - Jump"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="Icon2" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
-layout_mode = 2
-texture_normal = ExtResource("7_k8lmu")
-
-[node name="ControlLabel2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control3"]
-layout_mode = 2
-text = "TAB - Pause"
+text = "UP ARROW - Jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
@@ -126,7 +115,18 @@ texture_normal = ExtResource("6_05nbe")
 
 [node name="ControlLabel" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control4"]
 layout_mode = 2
-text = "S - dash"
+text = "Space - dash"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Icon2" type="TextureButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control4"]
+layout_mode = 2
+texture_normal = ExtResource("7_k8lmu")
+
+[node name="ControlLabel2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Control4"]
+layout_mode = 2
+text = "TAB - Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

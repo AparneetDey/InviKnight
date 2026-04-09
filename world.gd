@@ -7,6 +7,8 @@ const STAGE_MAP := [
 	preload("res://stages/level_3.tscn"),
 	preload("res://stages/level_4.tscn"),
 	preload("res://stages/level_5.tscn"),
+	preload("res://stages/level_6.tscn"),
+	preload("res://stages/level_7.tscn"),
 ]
 
 @export var player : Player
@@ -52,7 +54,7 @@ func handleStageLoad() -> void:
 	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
-	player.state = Player.State.IDLE
+	player.state = Player.State.POWER_DOWN
 	player.isInvincible = false
 	player.invincibleTimer.stop()
 

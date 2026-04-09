@@ -51,7 +51,7 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_y7iq2")
-invincibilityTime = 2.5
+invincibilityTime = 3.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_c3rpo")
