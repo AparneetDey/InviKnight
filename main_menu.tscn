@@ -7,6 +7,33 @@
 [ext_resource type="Texture2D" uid="uid://c5ph17bv5lk43" path="res://assets/main-menu/main-menu-bottle.png" id="3_fu7sn"]
 [ext_resource type="FontFile" uid="uid://cmicr4w4rj7k4" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="6_nlkkf"]
 
+[sub_resource type="Animation" id="Animation_qe12f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-63, 130)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bottle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(497, 51.000004)]
+}
+
 [sub_resource type="Animation" id="Animation_nlkkf"]
 resource_name = "float"
 length = 0.8
@@ -35,33 +62,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(497, 51.000004), Vector2(497, 41)]
-}
-
-[sub_resource type="Animation" id="Animation_qe12f"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Character:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-63, 130)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Bottle:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(497, 51.000004)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8qtwp"]
@@ -139,21 +139,25 @@ uppercase = true
 [node name="StartButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "START"
 
 [node name="ControlsButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "CONTROLS"
 
 [node name="ObjectiveButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "OBJECTIVE"
 
 [node name="ExitButton" type="Button" parent="Content"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 text = "EXIT"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

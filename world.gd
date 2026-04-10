@@ -13,7 +13,7 @@ const STAGE_MAP := [
 
 @export var player : Player
 
-var stageIndex : int = 0
+var stageIndex : int = 5
 
 var currentStageScene : Stage = null
 var collectedBottles : int = 0
@@ -54,7 +54,7 @@ func handleStageLoad() -> void:
 	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
-	player.state = Player.State.POWER_DOWN
+	player.state = Player.State.IDLE
 	player.isInvincible = false
 	player.invincibleTimer.stop()
 

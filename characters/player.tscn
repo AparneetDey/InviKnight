@@ -260,7 +260,7 @@ durationJustDashed = 250.0
 friction = 900
 jumpIntensity = 250
 maxSpeed = 300
-timeAddOnKill = 1.5
+timeAddOnKill = 1.0
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 scale = Vector2(1.1, 1.1)

@@ -124,7 +124,7 @@ offset_right = -90.0
 offset_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
-action_mode = 0
+mouse_default_cursor_shape = 2
 text = "Retry"
 
 [node name="NextButton" type="Button" parent="Content"]
@@ -140,6 +140,7 @@ offset_right = 149.5
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 text = "Next"
 
 [node name="HomeButton" type="Button" parent="Content"]
@@ -155,6 +156,7 @@ offset_right = 33.5
 offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 2
 text = "Home"
 
 [node name="ContinueButton" type="Button" parent="Content"]
@@ -164,6 +166,7 @@ offset_left = 93.0
 offset_top = 59.0
 offset_right = 203.0
 offset_bottom = 90.0
+mouse_default_cursor_shape = 2
 text = "Continue"
 
 [node name="TimeLabel" type="Label" parent="Content"]

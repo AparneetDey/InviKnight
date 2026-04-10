@@ -1,8 +1,9 @@
 class_name  Player
 extends CharacterBody2D
 
-const GRAVITY = 500
-const POWER_UP_BONUS = 50
+const GRAVITY := 500
+const GRAVITY_MULTIPLIER := 2
+const POWER_UP_BONUS := 50
 
 @export var acceleration : int
 @export var dashSpeed : int
@@ -38,6 +39,7 @@ const animMap : Dictionary = {
 var dir : float = 0.0
 var dashDir : Vector2 = Vector2.RIGHT
 var isInvincible : bool = false
+var currentGravity : int = 0
 var speed : int = 0
 var jumpForce : int = 0
 var state = State.IDLE
@@ -51,6 +53,7 @@ func _init() -> void:
 func _ready() -> void:
 	speed = maxSpeed
 	jumpForce = jumpIntensity
+	currentGravity = GRAVITY
 	dashTimer.timeout.connect(onDashTimeout.bind())
 	wallDamageEmitter.body_entered.connect(onBreakWall.bind())
 	enemyDamageEmitter.area_entered.connect(onDamageEmit.bind())
@@ -78,8 +81,15 @@ func flipSprites() -> void:
 		emitterPivot.scale.x = -1
 
 func applyGravity(delta: float) -> void:
+	currentGravity = GRAVITY
+	
+	if(velocity.y > 0):
+		currentGravity *= GRAVITY_MULTIPLIER
+		
 	if(not is_on_floor()):
-		velocity.y += GRAVITY * delta
+		velocity.y += currentGravity * delta
+	else:
+		velocity.y = 0
 
 func applyAcceleration(delta: float) -> void:
 	velocity.x = move_toward(velocity.x , speed*dir, acceleration*delta)
@@ -155,6 +165,8 @@ func onDamageEmit(receiver: DamageReceiver) -> void:
 		velocity = Vector2.ZERO
 
 func onPickedInvincibility(invincibilityTime: float) -> void:
+	speed = maxSpeed
+	jumpForce = jumpIntensity
 	if(isInvincible):
 		var newTime := invincibleTimer.time_left + invincibilityTime
 		invincibleTimer.wait_time = newTime
@@ -162,9 +174,9 @@ func onPickedInvincibility(invincibilityTime: float) -> void:
 	else:
 		isInvincible = true
 		invincibleTimer.wait_time = invincibilityTime
-		speed += POWER_UP_BONUS
-		jumpForce += POWER_UP_BONUS
 	
+	speed += POWER_UP_BONUS
+	jumpForce += POWER_UP_BONUS
 	state = State.POWER_UP
 	velocity = Vector2.ZERO
 	SoundPlayer.play(SoundManager.Sound.POWER_UP)
