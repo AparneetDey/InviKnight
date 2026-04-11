@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://c7s7cshmmb24f"]
+
+[ext_resource type="PackedScene" uid="uid://lnvdsicll0v0" path="res://ui/stage_complete_ui.tscn" id="1_np7xj"]
+
+[node name="GameCompleteUI" instance=ExtResource("1_np7xj")]
+
+[node name="HeaderLabel" parent="Content" index="0"]
+offset_left = -238.0
+offset_top = -150.0
+offset_right = 239.0
+offset_bottom = -81.0
+text = "Game Completed
+Thank You For Playing"
+
+[node name="NextButton" parent="Content" index="3"]
+visible = false
+
+[node name="HomeButton" parent="Content" index="4"]
+offset_left = 84.5
+offset_right = 148.5

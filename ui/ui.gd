@@ -1,10 +1,12 @@
 class_name UI
 extends CanvasLayer
 
+const GAME_COMPLETE_PREFAB := preload("res://ui/game_complete_ui.tscn")
 const STAGE_COMPLETE_PREFAB := preload("res://ui/stage_complete_ui.tscn")
 const STAGE_OVER_PREFAB := preload("res://ui/stage_over_ui.tscn")
 const STAGE_PAUSED_PREFAB := preload("res://ui/stage_paused_ui.tscn")
 
+var gameCompleteScene : StageStatusUI = null
 var stageCompleteScene : StageStatusUI = null
 var stageOverScene : StageStatusUI = null
 var stagePausedScene : StageStatusUI = null
@@ -15,10 +17,17 @@ func _init() -> void:
 	SignalManager.stageRetry.connect(onStageStart)
 	SignalManager.stageNext.connect(onStageStart)
 	SignalManager.stagePaused.connect(onStagePause)
+	SignalManager.gameCompleted.connect(onGameComplete.bind())
 
 func _process(_delta: float) -> void:
 	if(Input.is_action_just_pressed("pause") and not stageCompleteScene and not stageOverScene):
 		onStagePause()
+
+func onGameComplete() -> void:
+	if(gameCompleteScene == null):
+		gameCompleteScene = GAME_COMPLETE_PREFAB.instantiate()
+		SoundPlayer.play(SoundManager.Sound.LEVEL_COMPLETE)
+		add_child(gameCompleteScene)
 
 func onStageComplete() -> void:
 	if(stageCompleteScene == null):

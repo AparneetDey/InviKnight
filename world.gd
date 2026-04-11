@@ -9,11 +9,14 @@ const STAGE_MAP := [
 	preload("res://stages/level_5.tscn"),
 	preload("res://stages/level_6.tscn"),
 	preload("res://stages/level_7.tscn"),
+	preload("res://stages/level_8.tscn"),
+	preload("res://stages/level_9.tscn"),
+	preload("res://stages/level_10.tscn"),
 ]
 
 @export var player : Player
 
-var stageIndex : int = 5
+var stageIndex : int = 0
 
 var currentStageScene : Stage = null
 var collectedBottles : int = 0
@@ -24,6 +27,7 @@ var totalBottlesInLevel : int = 0
 
 func _ready() -> void:
 	handleStageLoad()
+	SignalManager.gameCompleted.connect(onStageCompleted.bind())
 	SignalManager.stageCompleted.connect(onStageCompleted.bind())
 	SignalManager.stageOver.connect(onStageOver.bind())
 	SignalManager.stageRetry.connect(onStageRetry.bind())
@@ -54,9 +58,12 @@ func handleStageLoad() -> void:
 	timerActive = true
 	player.global_position = currentStageScene.spawnPosition
 	player.velocity = Vector2.ZERO
+	player.characterSprite.scale = Vector2.ONE
 	player.state = Player.State.IDLE
 	player.isInvincible = false
 	player.invincibleTimer.stop()
+	if(stageIndex==STAGE_MAP.size() - 1):
+		player.onPickedInvincibility(100.0)
 
 func onStageRetry() -> void:
 	handleStageLoad()
@@ -82,6 +89,9 @@ func onBottleCollected(_time: float) -> void:
 	collectedBottles += 1
 
 func calculateStars() -> int:
+	if(totalBottlesInLevel == 0):
+		return 3
+	
 	var per := (float(collectedBottles) / totalBottlesInLevel) * 100
 	
 	if(per >= 100): return 3

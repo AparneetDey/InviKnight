@@ -3,6 +3,7 @@ extends Node
 signal hitBreakbleWall(position: Vector2)
 signal pickedInvincibility(time: float)
 
+signal gameCompleted
 signal stageCompleted
 signal stageRetry
 signal stageNext
